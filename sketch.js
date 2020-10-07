@@ -7,9 +7,13 @@ var engine, world;
 var ground;
 var block1;
 var polygon;
-var slingshot;
+var slingshot, backgroundImg;
 var score = 0;
+var bg = "light.jpg";
 
+function preload(){
+  changeBakcgroundImg();
+}
 
 
 function setup() {
@@ -59,7 +63,8 @@ function setup() {
 }
 
 function draw() {
-  //background("cyan");  
+  if(backgroundImg)
+  background(backgroundImg);  
   Engine.update(engine);
 
   text("SCORE : "+ score, 750, 40);
@@ -144,12 +149,12 @@ async function changeBakcgroundImg(){
   var datetime = responseJSON.datetime;
   var hour = datetime.slice(11, 13);
   
-  if(hour >= 1 && hour<= 23){
-     background("black");
+  if(hour >= 6 && hour<= 16){
+     bg = ("dark.jpg");
   }
   else {
-     background("cyan");
+     bg = ("light.jpg");
   }
- // backgroundImg = loadImage(bg);
- // console.log(backgroundImg);
+ backgroundImg = loadImage(bg);
+ 
   }
